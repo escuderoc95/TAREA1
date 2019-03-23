@@ -1,0 +1,63 @@
+#include<string>
+#include <stdio.h>
+#include <math.h>
+#include<iostream>
+
+using namespace std;
+
+#define True 1
+#define False 0
+
+bool ok_chscrb = False;
+
+
+void NumStringToInt(string numero)
+{
+    string num = numero; /* NO borre esta linea de codigo */
+    int t=num.size();
+    int c=0,rango1,rango2, total=0;
+
+    if(t>11){
+        cout<<"el numero ingresado es demasiado grande para esta operacion";
+    }
+    else{
+        t=t-1;
+        rango1=num[0];
+        rango2=num[1];
+        if(((t==11) && (rango1==45) && (rango2<50)) || ((t<=10) && (rango1==45) && (rango2<50)) ||((t==10) && (rango1>=48) && (rango1<50)) || ((t<10) && (rango1>=48) && (rango1<=57))){
+            while (t >= 0){
+                rango1=num[t];
+                rango2=rango1-48;
+                if(t > 0){
+                    total=total+(rango2*pow(10,c));
+                }
+                else{
+                    if(rango1==45){
+                        total=total*(-1);
+                    }
+                    else{
+                        total=total+(rango2*pow(10,c));
+                    }
+                }
+            t-=1;
+            c+=1;
+            }
+            cout<<"El numero ingresado es: "<<total<<endl;
+        }
+        else{
+            cout<<"el numero ingresado es demasiado grande para el dato entero";
+        }
+    }
+
+}
+
+int main()
+{
+    //1.
+    string number = "";
+    cout << "Ingrese un numero entero positivo o negativo: ";
+    cin>>number;
+    NumStringToInt(number);
+    cout<<endl;
+
+}
